@@ -28,8 +28,6 @@ public class Main {
 			Arrays.fill(dp[i],Long.MAX_VALUE);
 		}
 		
-		boolean[][] check = new boolean[N+1][K+1];
-		
 		PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingLong(o1-> o1.W));
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -48,10 +46,7 @@ public class Main {
 				System.out.println(now.W);
 				return;
 			}
-            
-			if(check[now.E][now.cnt]) continue;
-            
-			check[now.E][now.cnt] = true;         
+			if(now.W > dp[now.E][now.cnt]) continue;
 			for(Node next : way[now.E]) {
 				long nextCost = now.W+next.W;
 				if(nextCost < dp[next.E][now.cnt]) {
