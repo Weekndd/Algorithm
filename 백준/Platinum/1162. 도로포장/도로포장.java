@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
 	static int N, M, K;
-	static class Node {
+	static class Node implements Comparable<Node>{
 		int S,E,cnt;
 		long W;
 		public Node(int S, int E, long W, int cnt) {
@@ -11,6 +11,9 @@ public class Main {
 			this.E = E;
 			this.W = W;
 			this.cnt = cnt;
+		}
+		public int compareTo(Node o1) {
+			return (int)(this.W-o1.W);
 		}
 	}
 	
@@ -28,7 +31,9 @@ public class Main {
 			Arrays.fill(dp[i],Long.MAX_VALUE);
 		}
 		
-		PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingLong(o1-> o1.W));
+		boolean[][] check = new boolean[N+1][K+1];
+		
+		PriorityQueue<Node> pq = new PriorityQueue<>();
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
 			int s = Integer.parseInt(st.nextToken());
@@ -46,7 +51,9 @@ public class Main {
 				System.out.println(now.W);
 				return;
 			}
-			if(now.W > dp[now.E][now.cnt]) continue;
+			if(check[now.E][now.cnt]) continue;
+			check[now.E][now.cnt] = true;
+
 			for(Node next : way[now.E]) {
 				long nextCost = now.W+next.W;
 				if(nextCost < dp[next.E][now.cnt]) {
