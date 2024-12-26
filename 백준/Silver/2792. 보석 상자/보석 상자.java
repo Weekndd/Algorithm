@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-	static int N,M,jams[];
+	static int N,M,jams[],max;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -11,12 +11,12 @@ public class Main {
         jams = new int[M];
         for(int i=0; i<M; i++) {
         	jams[i] = Integer.parseInt(br.readLine());
+        	max = Math.max(max,jams[i]);
         }
         System.out.println(parametricSearch(N));
     }//end main
     
     static int parametricSearch(int target) {
-    	int max = Arrays.stream(jams).max().getAsInt();
     	int left = 1;
     	int right = max;
     	
