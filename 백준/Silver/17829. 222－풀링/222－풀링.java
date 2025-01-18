@@ -19,21 +19,15 @@ public class Main {
     static int recur(int size, int sr, int sc) {
     	int newSize = size/2;
     	List<Integer> list = new ArrayList<>();
-    	if(newSize==1) {
-    		for(int i=sr; i<=sr+newSize; i++) {
-    			for(int j=sc; j<=sc+newSize; j++) {
-    				list.add(arr[i][j]);
-    			}
-    		}
-    		Collections.sort(list);
-    		return list.get(2);
+    	if(newSize==0) {
+    		return arr[sr][sc];
     	}
-    	for(int i=sr; i<sr+size; i+=newSize) {
-    		for(int j=sc; j<sc+size; j+=newSize) {
-    			list.add(recur(newSize, i, j));
-    		}
-    	}
-    	Collections.sort(list);
-    	return list.get(2);
+    	int[] nums = new int[4];
+    	nums[0]=recur(newSize,sr,sc);
+    	nums[1]=recur(newSize,sr+newSize,sc);
+    	nums[2]=recur(newSize,sr,sc+newSize);
+    	nums[3]=recur(newSize,sr+newSize,sc+newSize);
+    	Arrays.sort(nums);
+    	return nums[2];
     }
 }
