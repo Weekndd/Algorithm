@@ -30,6 +30,7 @@ class Main {
     		for(int i=1; i<=N; i++) {
     			int kcal = candies[i].kcal;
     			int price = candies[i].price;
+    			if(price>K) continue;
     			for(int j=price; j<=K; j++) {
     				dp[j] = Math.max(dp[j],dp[j-price]+kcal);
     			}
@@ -37,6 +38,5 @@ class Main {
     		sb.append(dp[K]+"\n");
     	}
     	System.out.println(sb);
-    	
     }//end main
 }
