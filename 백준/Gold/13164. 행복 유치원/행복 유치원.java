@@ -12,7 +12,6 @@ public class Main {
         for(int i=0; i<N; i++) {
         	arr[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(arr);
         int[] temp = new int[N-1];
         for(int i=1; i<N; i++) {
         	temp[i-1] = arr[i]-arr[i-1];
