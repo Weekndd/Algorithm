@@ -87,9 +87,6 @@ public class Main {
 					if(seat.empty<empty) {
 						seat = new Seat(bestFriend, empty, i, j);
 					}
-					else if(seat.empty==empty) {
-						
-					}
 				}
 			}
 		}
